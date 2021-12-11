@@ -57,7 +57,7 @@ thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remov
   #Fraction Unfolded at Each Temp
   df <- df %>% mutate(FractionUnfolded = (ellips - folded_elip) / (delta)) %>%
     mutate(Keq = (FractionUnfolded/(1-FractionUnfolded))) %>%
-    mutate(lnKeq = log(Keq)) %>% filter(is.finite(lnKeq))
+    suppressWarnings(mutate(lnKeq = log(Keq))) %>% filter(is.finite(lnKeq))
 
   ## Van't Hoff Equation
 
@@ -96,12 +96,12 @@ thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remov
   text(df$`1/temp_kelvin`, df$lnKeq, labels=rownames(df), cex=0.8, pos=1)
   #adding thermodynamic parameters onto plot
   legend("topright", legend=paste("Model: y = ", round(slope, digits) , "x +", round(intercept, digits), "\n",
-                                 "dH: ", enthalpy, " J mol-1 \n",
-                                  "dS: ", entropy, "J K-1 \n",
-                                  "Tm: ", Tm, "°C \n",
+                                  "Enthalpy: ", enthalpy, " J mol-1 \n",
+                                  "Entropy: ", entropy, " J K-1 \n",
+                                  "Melting Temp.: ", Tm, "°C \n",
                                   "R.Squared:", rsquared, sep=""), cex=0.75, bty="n")
 
-  return(df)
+  #return(df)
 
 
 
