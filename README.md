@@ -1,26 +1,37 @@
 
 # cdspecR
 
-<!-- badges: start -->
-<!-- badges: end -->
 
-The goal of cdspecR is to ...
+The goal of cdspecR is to ... 
+
+1) automate the process of transforming raw data from circular
+dichroism (CD) experiments 
+2) provide high-quality, data visualization while incorporating user-friendly options for personalizing graphs 
+3) streamline the data analysis process for extracting key information about the
+biochemistry of the system 
 
 ## Installation
 
-You can install the development version of cdspecR from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jnguyen01/cdspecR")
+
+if(!require(remotes)){
+  install.packages("remotes")
+}
+remotes::install_github("jnguyen01/cdspecR")
+
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(cdspecR)
 ## basic example code
+
+protein <- importCD() %>% 
+plotCDMelt(wavelength=210) %>%
+thermodynamicsCD(fully_folded_temp=10, fully_unfolded_temp=95)
+
+
 ```
 
