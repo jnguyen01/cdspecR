@@ -4,10 +4,12 @@
 \alias{infoCD}
 \title{Extract Information from a CD Melting Data File}
 \usage{
-infoCD(file, params = FALSE)
+infoCD(file, data_pitch, params = FALSE)
 }
 \arguments{
 \item{file}{a single CSV file from the Jasco J-810 CD experiment}
+
+\item{data_pitch}{interval for the wavelengths}
 
 \item{params}{prints information about the experiment}
 }

@@ -46,7 +46,7 @@ infoCD <- function(file, data_pitch, params=FALSE) {
 
   date <- substr(x_extended_v2[1], start=15, stop=35)
   cell <- substr(x_extended_v2[19], start=8, stop=9)
-  if(missing(wave_interval)){
+  if(missing(data_pitch)){
     stop("Please put in data pitch value")
     }
   wave_interval <- data_pitch
