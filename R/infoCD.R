@@ -9,6 +9,8 @@
 #'
 #' @param params prints information about the experiment
 #'
+#' @param data_pitch interval for the wavelengths
+#'
 #' @return an atomic vector
 #'
 #' @importFrom readr read_lines
@@ -22,7 +24,7 @@
 #' }
 #'
 
-infoCD <- function(file, params=FALSE) {
+infoCD <- function(file, data_pitch, params=FALSE) {
 
   if(missing(file)) file <- file.choose()
 
@@ -44,7 +46,11 @@ infoCD <- function(file, params=FALSE) {
 
   date <- substr(x_extended_v2[1], start=15, stop=35)
   cell <- substr(x_extended_v2[19], start=8, stop=9)
-  wave_interval <- substr(x_extended_v2[9], start=15, stop=18)
+  if(missing(wave_interval)){
+    stop("Please put in data pitch value")
+    }
+  wave_interval <- data_pitch
+  #wave_interval <- substr(x_extended_v2[9], start=15, stop=18)
   final_temp <- substr(x_extended_v2[39], start=20, stop=22)
   start_temp <- substr(x_extended_v2[38], start=18,stop=20)
   temp_interval <- substr(x_extended_v2[40], start=23, stop=23)
