@@ -21,14 +21,10 @@
 #'
 #' @import dplyr
 #'
-#'
-#'
-#'
-#'
 
 thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remove.temp=NULL, digits=3, ...) {
 
-  require(dplyr)
+  suppressMessages(require(dplyr))
 
   if(missing(fully_folded_temp) | missing(fully_unfolded_temp)) {
 
@@ -57,7 +53,7 @@ thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remov
   #Fraction Unfolded at Each Temp
   df <- df %>% mutate(FractionUnfolded = (ellips - folded_elip) / (delta)) %>%
     mutate(Keq = (FractionUnfolded/(1-FractionUnfolded))) %>%
-    suppressWarnings(mutate(lnKeq = log(Keq))) %>% filter(is.finite(lnKeq))
+    mutate(lnKeq = log(Keq)) %>% filter(is.finite(lnKeq))
 
   ## Van't Hoff Equation
 
