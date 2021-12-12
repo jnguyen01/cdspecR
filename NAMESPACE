@@ -2,7 +2,9 @@
 
 export(importCD)
 export(plotCDMelt)
-export(thermodynamicsCD)
+export(plotCDSpectra)
+export(plotCDVantHoff)
 import(dplyr)
+importFrom(cultevo,temperature.colors)
 importFrom(readr,read_csv)
 importFrom(readr,read_lines)

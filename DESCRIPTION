@@ -1,5 +1,5 @@
 Package: cdspecR
-Title: Automates And Streamlines CD Data Analysis 
+Title: Circular Dichroism Spectroscopy Data Analysis
 Version: 0.0.0.9000
 Authors@R: 
     person("Justin", "Nguyen", , "jnguyen01@wesleyan.edu", role = c("aut", "cre"),
@@ -10,5 +10,6 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
+    cultevo,
     dplyr,
     readr

@@ -4,13 +4,11 @@
 \alias{importCD}
 \title{Import Circular Dichroism Files From Jasco J-810}
 \usage{
-importCD(files, ...)
+importCD(files)
 }
 \arguments{
 \item{files}{path to where csv files for the CD data are located. If missing, the
 user is prompted to select files interactively.}
-
-\item{...}{passing to \code{info}}
 }
 \value{
 a list containing a data frame and an atomic vector

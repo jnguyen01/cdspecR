@@ -1,59 +1,60 @@
-#' @title Calculating Thermodynamic Parameters
+#' @title Calculating Thermodynamic Parameters using Van't Hoff Equation
 #'
 #' @description This function automates the calculation of fraction unfolded from the ellipicities in a two-state model,
 #' equilibrium constant, and thermodynamics of the system. Additionally, a Van't Hoff plot is provided with enthalpy,
 #' entropy, and melting temperature values.
 #
-#' @param data a list containing ellipticities, temperatures in Celsius, and information about the experiment.
-#' (i.e, output of plotCDMelt() function)
+#' @param data an object of class 'vh'
 #'
-#' @param fully_folded_temp temperature (in Celsius) at which the biomolecule is assumed fully-folded.
+#' @param folded_temp temperature (in Celsius) at which the biomolecule is assumed fully-folded
 #'
-#' @param fully_unfolded_temp temperature (in Celsius) at which the biomolecule is assumed denatured.
+#' @param unfolded_temp temperature (in Celsius) at which the biomolecule is assumed fully-unfolded
 #'
-#' @param remove.temp remove data points from the Van't Hoff plot (see example below)
+#' @param remove.temp remove data points from the Van't Hoff plot
 #'
-#' @param digits how many digits shown for slope, y-intercept, enthalpy and entropy.
+#' @param digits how many digits shown for slope, y-intercept, enthalpy and entropy
 #'
-#' @param ... passing the arguments to \link{plot} function
+#' @param ... passing arguments to \link{plot} function
 #'
 #' @export
 #'
 #' @import dplyr
 #'
 
-thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remove.temp=NULL, digits=3, ...) {
+plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.temp=NULL, title, ...) {
 
   suppressMessages(require(dplyr))
 
-  if(missing(fully_folded_temp) | missing(fully_unfolded_temp)) {
+  if(!inherits(data, "vh")) stop("data must  be class 'vh'")
 
-    fully_folded_temp <- data$info[4]
+  if(missing(folded_temp) | missing(unfolded_temp)) {
 
-    fully_unfolded_temp <- data$info[5]
+    folded_temp <- data$info[4]
+
+    unfolded_temp <- data$info[5]
 
     }
 
-  fully_folded_temp <- as.numeric(substitute(fully_folded_temp))
-  fully_unfolded_temp <- as.numeric(substitute(fully_unfolded_temp))
+  folded_temp <- as.numeric(substitute(folded_temp))
+  unfolded_temp <- as.numeric(substitute(unfolded_temp))
 
-  folded_unfolded_range <- seq(fully_folded_temp, fully_unfolded_temp, by=data$info[6])
+  folded_unfolded_range <- seq(folded_temp, unfolded_temp, by=data$info[6])
 
   df <- data.frame(temp_celsius=data$temp_celsius, ellips=data$ellips, check.names=FALSE) %>%
-    filter(temp_celsius %in% folded_unfolded_range) %>%
-    mutate((1/(temp_celsius+273)), .before=2)
+  filter(temp_celsius %in% folded_unfolded_range) %>%
+  mutate((1/(temp_celsius+273)), .before=2)
 
   colnames(df)[2] <- "1/temp_kelvin"
 
   #Fractional Change in Unfolded Protein
-  folded_elip <- df[as.character(fully_folded_temp), "ellips"]
-  unfolded_elip <- df[as.character(fully_unfolded_temp), "ellips"]
+  folded_elip <- df[as.character(folded_temp), "ellips"]
+  unfolded_elip <- df[as.character(unfolded_temp), "ellips"]
   delta <- unfolded_elip - folded_elip
 
   #Fraction Unfolded at Each Temp
   df <- df %>% mutate(FractionUnfolded = (ellips - folded_elip) / (delta)) %>%
-    mutate(Keq = (FractionUnfolded/(1-FractionUnfolded))) %>%
-    mutate(lnKeq = log(Keq)) %>% filter(is.finite(lnKeq))
+  mutate(Keq = (FractionUnfolded/(1-FractionUnfolded))) %>%
+  mutate(lnKeq = log(Keq)) %>% filter(is.finite(lnKeq))
 
   ## Van't Hoff Equation
 
@@ -84,7 +85,7 @@ thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remov
 
   #Van't Hoff Plot
   plot(df$`1/temp_kelvin`, df$lnKeq,
-       xlab= "1/T (1/K)", ylab="ln(Keq)", main="Van't Hoff Equation",
+       xlab= "1/T (1/K)", ylab="ln(Keq)", main=title,
        col="blue", pch=16, ...)
   #adding line of best fit
   abline(fit, col="red", lwd=1.1)
@@ -92,12 +93,12 @@ thermodynamicsCD <- function(data, fully_folded_temp, fully_unfolded_temp, remov
   text(df$`1/temp_kelvin`, df$lnKeq, labels=rownames(df), cex=0.8, pos=1)
   #adding thermodynamic parameters onto plot
   legend("topright", legend=paste("Model: y = ", round(slope, digits) , "x +", round(intercept, digits), "\n",
-                                  "Enthalpy: ", enthalpy, " J mol-1 \n",
-                                  "Entropy: ", entropy, " J K-1 \n",
-                                  "Melting Temp.: ", Tm, "°C \n",
+                                  "Enthalpy : ", enthalpy, " J mol-1 \n" ,
+                                  "Entropy : ", entropy, " J K-1 \n",
+                                  "Melting Temperature : ", Tm, "°C \n ",
                                   "R.Squared:", rsquared, sep=""), cex=0.75, bty="n")
 
-  #return(df)
+  return(df)
 
 
 

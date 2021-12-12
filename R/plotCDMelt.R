@@ -4,7 +4,6 @@
 #' temperature.
 #'
 #' @param data a class object 'cd'
-#' (i.e, output from importCD() function)
 #'
 #' @param wavelength specific wavelength of interest for plotting multiplicities as a function
 #' of temperature
@@ -23,7 +22,7 @@
 #'
 #
 
-plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
+plotCDMelt <- function(data, wavelength, title, col="red", pch=16, ...) {
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
@@ -41,7 +40,7 @@ plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
   ellip <- unlist(df[wavelength,])
 
   #Plot of Melting CD @ Specific Wavelength
-  plot(temp, ellip, main="CD Melt Plot", sub=paste("Cell", info[7]),
+  plot(temp, ellip, main=title,
        xlab=expression(paste("Temperature ", "(", degree,"C)")),
        ylab=c("Ellipticity (mdeg)", paste("@",wavelength, "nm")),
        col=col, pch=pch, ...)
@@ -50,6 +49,7 @@ plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
   #cat("Q: At what temperatures do you assume fraction fully-folded and fully-unfolded? \n")
   final <- list(ellip, temp, info)
   names(final) <- c("ellips", "temp_celsius", "info")
+  class(final) <- c("vh", "list")
   return(final)
 
 }

@@ -4,11 +4,10 @@
 \alias{plotCDMelt}
 \title{Melting Data Plot}
 \usage{
-plotCDMelt(data, wavelength, col = "red", pch = 16, ...)
+plotCDMelt(data, wavelength, title, col = "red", pch = 16, ...)
 }
 \arguments{
-\item{data}{a class object 'cd'
-(i.e, output from importCD() function)}
+\item{data}{a class object 'cd'}
 
 \item{wavelength}{specific wavelength of interest for plotting multiplicities as a function
 of temperature}
