@@ -21,7 +21,7 @@
 #' @import dplyr
 #'
 
-plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.temp=NULL, title, ...) {
+plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.temp=NULL, title="Van't Hoff Equation", ...) {
 
   suppressMessages(require(dplyr))
 
@@ -85,20 +85,21 @@ plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.te
 
   #Van't Hoff Plot
   plot(df$`1/temp_kelvin`, df$lnKeq,
-       xlab= "1/T (1/K)", ylab="ln(Keq)", main=title,
+       xlab= "1/T (1/K)", ylab="ln(Keq)", ylim=c(min(df$lnKeq)*2, max(df$lnKeq)*2), main=title,
        col="blue", pch=16, ...)
   #adding line of best fit
   abline(fit, col="red", lwd=1.1)
   #adding temperatures in celsius above each point
   text(df$`1/temp_kelvin`, df$lnKeq, labels=rownames(df), cex=0.8, pos=1)
   #adding thermodynamic parameters onto plot
-  legend("topright", legend=paste("Model: y = ", round(slope, digits) , "x +", round(intercept, digits), "\n",
-                                  "Enthalpy : ", enthalpy, " J mol-1 \n" ,
-                                  "Entropy : ", entropy, " J K-1 \n",
-                                  "Melting Temperature : ", Tm, "°C \n ",
-                                  "R.Squared:", rsquared, sep=""), cex=0.75, bty="n")
+  legend("topright", legend=c(paste("y = ", round(slope, digits) , "x +", round(intercept, digits)),
+                                  as.expression(bquote(R^2 ~ ": " ~ .(rsquared))),
+                                  as.expression(bquote(Delta ~ "H :" ~ .(enthalpy/1000) ~"kJ" ~ mol^-1)),
+                                  as.expression(bquote(Delta ~ "S :" ~.(entropy) ~ "J" ~ K^-1)),
+                                  as.expression(bquote(T[m] ~ ": "~ .(Tm)~"°C"))), bty="n", cex=0.75)
 
-  return(df)
+  print(df)
+
 
 
 
