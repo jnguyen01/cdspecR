@@ -4,7 +4,7 @@
 \alias{plotCDSpectra}
 \title{Overlay of All CD Spectra}
 \usage{
-plotCDSpectra(data, ...)
+plotCDSpectra(data, title = NULL, ...)
 }
 \arguments{
 \item{data}{an object of class 'cd'}

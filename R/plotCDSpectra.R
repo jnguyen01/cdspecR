@@ -27,7 +27,9 @@
 #'
 #'
 
-plotCDSpectra <- function(data, ...) {
+plotCDSpectra <- function(data, title=NULL, ...) {
+
+
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
@@ -39,13 +41,13 @@ plotCDSpectra <- function(data, ...) {
 
   #seq_wave <- select()
 
-  plot(seq_wave, df[,1], type="n", ylab="Ellipticity (mdeg)", xlab="Wavelength (nm)", xaxt="n",
-       main=paste("CD Spectra for Cell", info[7]), ylim=c(min(df), max(df)), ...)
-  axis(side=1, at=seq_wave)
+  plot(seq_wave, df[,1], type="n", ylab="Ellipticity (mdeg)", xlab="Wavelength (nm)",
+       main=paste(title), ylim=c(min(df), max(df)), ...)
+  #axis(side=1, at=seq_wave)
 
   #col <- rainbow(length(seq_temp))
   #col <- rev(heat.colors(length(seq_temp)))
-  col <- temperature.colors(length(seq_temp))[-1]
+  col <- cultevo::temperature.colors(length(seq_temp))[-1]
   dim(col) <- length(seq_temp)
   rownames(col) <- seq_temp
 
@@ -55,7 +57,7 @@ plotCDSpectra <- function(data, ...) {
 
   }
 
-  legend("topleft", legend=paste(seq_temp, "°C"), fill=col, bty="n", cex=0.5, ncol=6)
+  #legend("topleft", legend=paste(seq_temp, "°C"), fill=col, bty="n", cex=0.5, ncol=6)
 
 
 

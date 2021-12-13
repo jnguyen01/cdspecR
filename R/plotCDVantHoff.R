@@ -1,24 +1,40 @@
 #' @title Calculating Thermodynamic Parameters using Van't Hoff Equation
 #'
-#' @description This function automates the calculation of fraction unfolded from the ellipicities in a two-state model,
-#' equilibrium constant, and thermodynamics of the system. Additionally, a Van't Hoff plot is provided with enthalpy,
-#' entropy, and melting temperature values.
+#' @description Assuming a two-state model of melting a protein, this function automates the calculation of fraction unfolded
+#' from a fully-folded state to fully-unfolded state. At each temperature, equilibrium constants are derived and plotted based off of the
+#' Van't Hoff equation. From this linear model, enthalpy, entropy, Gibbs free energy of the system, and melting temperature of the
+#' system are estimated.
 #
 #' @param data an object of class 'vh'
 #'
-#' @param folded_temp temperature (in Celsius) at which the biomolecule is assumed fully-folded
+#' @param folded_temp temperature (in Celsius) at which the biomolecule is assumed fully-folded.
+#' Default folded_temp is your first temperature reading.
 #'
-#' @param unfolded_temp temperature (in Celsius) at which the biomolecule is assumed fully-unfolded
+#' @param unfolded_temp temperature (in Celsius) at which the biomolecule is assumed fully-unfolded.
+#' Default unfolded_temp is your final temperature reading.
 #'
-#' @param remove.temp remove data points from the Van't Hoff plot
+#' @param remove.temp remove specified data points from the linear regression model.
 #'
-#' @param digits how many digits shown for slope, y-intercept, enthalpy and entropy
+#' @param digits how many digits shown for your thermodynamic parameters.
 #'
-#' @param ... passing arguments to \link{plot} function
+#' @param ... passing arguments to \link{plot} function.
 #'
 #' @export
 #'
 #' @import dplyr
+#'
+#' @examples
+#' \dontrun {
+#'
+#'
+#'
+#' protein <- importCD() %>%
+#' plotCDMelt(wavelength=210) %>%
+#' plotCDVantHoff(folded_temp=10, unfolded_temp=95)
+#'
+#'
+#'
+#' }
 #'
 
 plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.temp=NULL, title="Van't Hoff Equation", ...) {
@@ -52,9 +68,15 @@ plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.te
   delta <- unfolded_elip - folded_elip
 
   #Fraction Unfolded at Each Temp
+
+  defaultW <- getOption("warn")
+  options(warn = -1)
+
   df <- df %>% mutate(FractionUnfolded = (ellips - folded_elip) / (delta)) %>%
   mutate(Keq = (FractionUnfolded/(1-FractionUnfolded))) %>%
   mutate(lnKeq = log(Keq)) %>% filter(is.finite(lnKeq))
+
+  options(warn = defaultW)
 
   ## Van't Hoff Equation
 
@@ -83,6 +105,12 @@ plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.te
   #melting temp in celsius
   Tm <- round((enthalpy/entropy) - 273, 2)
 
+  #ddG calculations
+  dGfolded <- (enthalpy - (entropy*(folded_temp+273)))
+  dGunfolded <- (enthalpy - (entropy*(unfolded_temp+273)))
+  ddG <- round(dGunfolded - dGfolded, digits)/1000
+
+
   #Van't Hoff Plot
   plot(df$`1/temp_kelvin`, df$lnKeq,
        xlab= "1/T (1/K)", ylab="ln(Keq)", ylim=c(min(df$lnKeq)*2, max(df$lnKeq)*2), main=title,
@@ -95,8 +123,9 @@ plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.te
   legend("topright", legend=c(paste("y = ", round(slope, digits) , "x +", round(intercept, digits)),
                                   as.expression(bquote(R^2 ~ ": " ~ .(rsquared))),
                                   as.expression(bquote(Delta ~ "H :" ~ .(enthalpy/1000) ~"kJ" ~ mol^-1)),
-                                  as.expression(bquote(Delta ~ "S :" ~.(entropy) ~ "J" ~ K^-1)),
-                                  as.expression(bquote(T[m] ~ ": "~ .(Tm)~"°C"))), bty="n", cex=0.75)
+                                  as.expression(bquote(Delta ~ "S :" ~.(entropy) ~ "J" ~ K^-1 ~ mol^-1)),
+                                  as.expression(bquote(T[m] ~ ": "~ .(Tm)~"°C")),
+                                  as.expression(bquote(Delta ~ Delta ~ G[unfolded-folded] ~ ": " ~ .(ddG) ~ "kJ " ~ mol^-1))), bty="n", cex=0.75)
 
   print(df)
 

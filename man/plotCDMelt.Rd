@@ -4,24 +4,30 @@
 \alias{plotCDMelt}
 \title{Melting Data Plot}
 \usage{
-plotCDMelt(data, wavelength, title, col = "red", pch = 16, ...)
+plotCDMelt(data, wavelength, col = "red", pch = 16, ...)
 }
 \arguments{
 \item{data}{a class object 'cd'}
 
-\item{wavelength}{specific wavelength of interest for plotting multiplicities as a function
-of temperature}
+\item{wavelength}{specific wavelength of interest for plotting ellipticities as a function
+of temperature.}
 
-\item{col}{color of the points (col="red" is default)}
+\item{col}{color of the points on the graph.}
 
-\item{pch}{shape of the points (pch=16 is default)}
+\item{pch}{shape of the points on the graph.}
 
-\item{...}{passing arguments to \link{plot} function}
+\item{...}{passing arguments to \link{plot} function.}
 }
 \description{
-A plot of the ellipticity values at a given wavelength over
+a plot of the ellipticity values at a given wavelength over
 temperature.
 }
-\seealso{
+\examples{
+\dontrun {
+
+protein <- importCD() \%>\% plotCDMelt(wavelength=220)
+
+
+}
 
 }

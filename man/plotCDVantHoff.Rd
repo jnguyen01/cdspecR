@@ -10,25 +10,42 @@ plotCDVantHoff(
   unfolded_temp,
   digits = 3,
   remove.temp = NULL,
-  title,
+  title = "Van't Hoff Equation",
   ...
 )
 }
 \arguments{
 \item{data}{an object of class 'vh'}
 
-\item{folded_temp}{temperature (in Celsius) at which the biomolecule is assumed fully-folded}
+\item{folded_temp}{temperature (in Celsius) at which the biomolecule is assumed fully-folded.
+Default folded_temp is your first temperature reading.}
 
-\item{unfolded_temp}{temperature (in Celsius) at which the biomolecule is assumed fully-unfolded}
+\item{unfolded_temp}{temperature (in Celsius) at which the biomolecule is assumed fully-unfolded.
+Default unfolded_temp is your final temperature reading.}
 
-\item{digits}{how many digits shown for slope, y-intercept, enthalpy and entropy}
+\item{digits}{how many digits shown for your thermodynamic parameters.}
 
-\item{remove.temp}{remove data points from the Van't Hoff plot}
+\item{remove.temp}{remove specified data points from the linear regression model.}
 
-\item{...}{passing arguments to \link{plot} function}
+\item{...}{passing arguments to \link{plot} function.}
 }
 \description{
-This function automates the calculation of fraction unfolded from the ellipicities in a two-state model,
-equilibrium constant, and thermodynamics of the system. Additionally, a Van't Hoff plot is provided with enthalpy,
-entropy, and melting temperature values.
+Assuming a two-state model of melting a protein, this function automates the calculation of fraction unfolded
+from a fully-folded state to fully-unfolded state. At each temperature, equilibrium constants are derived and plotted based off of the
+Van't Hoff equation. From this linear model, enthalpy, entropy, Gibbs free energy of the system, and melting temperature of the
+system are estimated.
+}
+\examples{
+\dontrun {
+
+
+
+protein <- importCD() \%>\%
+plotCDMelt(wavelength=210) \%>\%
+plotCDVantHoff(folded_temp=10, unfolded_temp=95)
+
+
+
+}
+
 }

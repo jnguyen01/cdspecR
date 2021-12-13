@@ -1,28 +1,32 @@
 #' @title Melting Data Plot
 #'
-#' @description A plot of the ellipticity values at a given wavelength over
+#' @description a plot of the ellipticity values at a given wavelength over
 #' temperature.
 #'
 #' @param data a class object 'cd'
 #'
-#' @param wavelength specific wavelength of interest for plotting multiplicities as a function
-#' of temperature
+#' @param wavelength specific wavelength of interest for plotting ellipticities as a function
+#' of temperature.
 #'
-#' @param col color of the points (col="red" is default)
+#' @param col color of the points on the graph.
 #'
-#' @param pch shape of the points (pch=16 is default)
+#' @param pch shape of the points on the graph.
 #'
-#' @param ... passing arguments to \link{plot} function
+#' @param ... passing arguments to \link{plot} function.
 #'
 #' @export
 #'
-#' @seealso
+#' @examples
+#' \dontrun {
+#'
+#' protein <- importCD() %>% plotCDMelt(wavelength=220)
 #'
 #'
+#' }
 #'
 #
 
-plotCDMelt <- function(data, wavelength, title, col="red", pch=16, ...) {
+plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
@@ -40,7 +44,7 @@ plotCDMelt <- function(data, wavelength, title, col="red", pch=16, ...) {
   ellip <- unlist(df[wavelength,])
 
   #Plot of Melting CD @ Specific Wavelength
-  plot(temp, ellip, main=title,
+  plot(temp, ellip,
        xlab=expression(paste("Temperature ", "(", degree,"C)")),
        ylab=c("Ellipticity (mdeg)", paste("@",wavelength, "nm")),
        col=col, pch=pch, ...)
