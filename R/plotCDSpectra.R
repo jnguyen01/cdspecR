@@ -36,12 +36,12 @@ plotCDSpectra <- function(data, title=NULL, ...) {
   df <- data[[1]]
   info <- data[[2]]
 
-  seq_wave <- seq(info[2], info[1], by=info[3])
+  seq_wave <- rev(seq(info[2], info[1], by=info[3]))
   seq_temp <- seq(info[4], info[5], by=info[6])
 
   #seq_wave <- select()
 
-  plot(seq_wave, df[,1], type="n", ylab="Ellipticity (mdeg)", xlab="Wavelength (nm)",
+  plot(seq_wave, rev(df[,1]), type="n", ylab="Ellipticity (mdeg)", xlab="Wavelength (nm)",
        main=paste(title), ylim=c(min(df), max(df)), ...)
   #axis(side=1, at=seq_wave)
 
