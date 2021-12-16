@@ -27,10 +27,20 @@ remotes::install_github("jnguyen01/cdspecR")
 library(cdspecR)
 ## basic example code
 
+#Import CSV Files 
+protein <- importCD()  
 
-protein <- importCD() %>% 
-plotCDMelt(wavelength=210) %>%
-thermodynamicsCD(folded_temp=10, unfolded_temp=95)
+#Optional Plot of Seeing CD Thermal Spectras 
+plotCDSpectra(protein)
+
+# Data Analysis of CD 
+
+protein_210 <- plotCDMelt(protein, wavelength=210) 
+
+thermodynamics <- plotCDVantHoff(protein_210, folded_temp=10, unfolded_temp=95) 
+
+
+
 
 
 ```
