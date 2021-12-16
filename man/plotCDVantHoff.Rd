@@ -10,7 +10,8 @@ plotCDVantHoff(
   unfolded_temp,
   digits = 3,
   remove.temp = NULL,
-  title = "Van't Hoff Equation",
+  main = "Van't Hoff Equation",
+  legend = FALSE,
   ...
 )
 }

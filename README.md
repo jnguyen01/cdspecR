@@ -1,6 +1,7 @@
 
 # cdspecR
 
+![](cd_spec.png)
 
 The goal of cdspecR is to ... 
 
@@ -14,12 +15,10 @@ biochemistry of the system
 
 
 ``` r
-
 if(!require(remotes)){
   install.packages("remotes")
 }
 remotes::install_github("jnguyen01/cdspecR")
-
 ```
 
 ## Example
@@ -28,9 +27,10 @@ remotes::install_github("jnguyen01/cdspecR")
 library(cdspecR)
 ## basic example code
 
+
 protein <- importCD() %>% 
 plotCDMelt(wavelength=210) %>%
-thermodynamicsCD(fully_folded_temp=10, fully_unfolded_temp=95)
+thermodynamicsCD(folded_temp=10, unfolded_temp=95)
 
 
 ```
