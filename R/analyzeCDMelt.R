@@ -14,6 +14,8 @@
 #'
 #' @param ... passing arguments to \link{plot} function.
 #'
+#' @export
+#'
 #' @importFrom stats loess predict
 #'
 #' @examples

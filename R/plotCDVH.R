@@ -11,6 +11,9 @@
 #'
 #' @param digits how many digits shown for thermodynamic parameters.
 #'
+#' @param legend shows the thermodynamic parameters using the Van't Hoff. Set legend=FALSE to
+#' hide the legend.
+#'
 #' @param ... passing arguments to \link{plot} function.
 #'
 #' @export
@@ -19,13 +22,12 @@
 #' @import greekLetters
 #'
 #' @examples
-#' \dontrun {
-#'
+#' \dontrun{
 #' protein <- importCD() %>%
-#' plotCDMelt(wavelength=210) %>%
+#' plotCDMelt(pwavelength=210) %>%
 #' analyzeCDMelt()
+#'}
 #'
-#' }
 #'
 
 plotCDVH <- function(data, start, end, digits=3, main="van't Hoff Plot", legend=TRUE, ...) {

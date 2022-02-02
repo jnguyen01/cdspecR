@@ -4,6 +4,8 @@
 #'
 #' @param data object outputted from \link{infoCD} function.
 #'
+#' @param legend shows the legend of the melting temperature. Default is TRUE.
+#'
 #' @param ... passing arguments to \code{plot} function.
 #'
 #' @export
@@ -27,7 +29,7 @@
 #'
 #'
 
-plotCDSpectra <- function(data, title=NULL, ...) {
+plotCDSpectra <- function(data, legend=TRUE, ...) {
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
@@ -40,7 +42,7 @@ plotCDSpectra <- function(data, title=NULL, ...) {
   #seq_wave <- select()
 
   plot(seq_wave, rev(df[,1]), type="n", ylab="Ellipticity (mdeg)", xlab="Wavelength (nm)",
-       main=paste(title), ylim=c(min(df), max(df)), ...)
+       ylim=c(min(df), max(df)), ...)
   #axis(side=1, at=seq_wave)
 
   #col <- rainbow(length(seq_temp))
@@ -55,7 +57,8 @@ plotCDSpectra <- function(data, title=NULL, ...) {
 
   }
 
+  if(legend=TRUE){
   legend("topright", legend=paste(seq_temp, "°C"), col=col, bty="n", lty=1, lwd=1.2, cex=0.6, ncol=6)
-
+  }
 
   }
