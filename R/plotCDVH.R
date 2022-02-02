@@ -99,6 +99,9 @@ plotCDVH <- function(data, start, end, digits=3, legend=TRUE, ...) {
                      paste(greek$Delta, "G_unfolded (kJ/mol)"),
                      paste(greek$Delta, greek$Delta,  "G (kJ/mol)"),
                      "Melting Temp. (°C)")
+
+  if(legend==FALSE) next
+
   lst <- list(thermo, df)
 
   return(lst)

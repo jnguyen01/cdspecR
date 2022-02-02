@@ -54,5 +54,6 @@ plotCDSpectra <- function(data, legend=TRUE, ...) {
   if(legend==TRUE){
   legend("topright", legend=paste(seq_temp, "°C"), col=col, bty="n", lty=1, lwd=1.2, cex=0.6, ncol=6)
   }
+  if(legend==FALSE) next
 
   }
