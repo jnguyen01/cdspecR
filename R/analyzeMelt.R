@@ -34,7 +34,7 @@
 #'
 
 
-analyzeCDMelt <- function(data, folded_temp, unfolded_temp, pch=16, ...) {
+analyzeMelt <- function(data, folded_temp, unfolded_temp, pch=16, ...) {
 
 suppressMessages(require(dplyr))
 suppressMessages(require(greekLetters))
