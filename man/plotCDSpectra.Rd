@@ -2,20 +2,20 @@
 % Please edit documentation in R/plotCDSpectra.R
 \name{plotCDSpectra}
 \alias{plotCDSpectra}
-\title{Overlay of All CD Spectra}
+\title{Melting Temperature Graph of All CD Spectras}
 \usage{
 plotCDSpectra(data, title = NULL, ...)
 }
 \arguments{
-\item{data}{an object of class 'cd'}
+\item{data}{object outputted from \link{infoCD} function.}
 
 \item{...}{passing arguments to \code{plot} function.}
 }
 \value{
-a plot
+a color-coded plot of each CD spectras on one graph.
 }
 \description{
-overlay all circular dichroism spectras
+This function returns overlays all the CD  in one graph.
 }
 \examples{
 

@@ -11,34 +11,39 @@ dichroism (CD) experiments
 3) streamline the data analysis process for extracting key information about the
 biochemistry of the system 
 
-## Installation
-
+## How To Install: 
 
 ``` r
+
+#Copy and Paste The Following Code: 
 if(!require(remotes)){
   install.packages("remotes")
 }
 remotes::install_github("jnguyen01/cdspecR")
 ```
 
-## Example
+## How To Use These Functions:
 
 ``` r
+
+#Load The Package
 library(cdspecR)
-## basic example code
 
-#Import CSV Files 
-protein <- importCD()  
+# Step 1 - Use importCD 
+protein <- importCD() 
 
-#Optional Plot of Seeing CD Thermal Spectras 
-plotCDSpectra(protein)
+# [Optional] Use plotCDSpectra to see all CD Spectra on one graph. 
+plotCDSpectra(protein) 
 
-# Data Analysis of CD 
+# Step 2 - Use plotCDMelt 
+melt <- plotCDMelt(protein, wavelength=220)
 
-protein_210 <- plotCDMelt(protein, wavelength=210) 
+# Step 3 - Use analyzeCDMelt 
+analyze <- analyzeCDMelt(melt)
 
-thermodynamics <- plotCDVantHoff(protein_210, folded_temp=10, unfolded_temp=95) 
+# Step 4 - use plotCDVH
+vh <- plotCDVH(analyze)
+
 
 
 ```
-

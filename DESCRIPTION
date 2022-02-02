@@ -12,4 +12,6 @@ RoxygenNote: 7.1.2
 Imports: 
     cultevo,
     dplyr,
-    readr
+    greekLetters,
+    readr,
+    stats

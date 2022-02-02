@@ -3,7 +3,7 @@
 #' @description a plot of the ellipticity values (at user-specified wavelength), as a function of
 #' temperature.
 #'
-#' @param data the object outputted from importCD().
+#' @param data the object outputted from \link{importCD} function.
 #'
 #' @param wavelength specific wavelength of interest for plotting ellipticities as a function
 #' of temperature.

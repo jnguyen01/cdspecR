@@ -3,7 +3,7 @@
 #' @description This function requires the user to specify the start and end temperature (in Celsius)
 #' range for the transition curve, where a plot of natural log of equilibrium constants versus 1/Temperature (in Kelvin).
 #
-#' @param data an object of class 'vh'
+#' @param data an object of class 'vh'; outputted from \link{analyzeCDMelt} function.
 #'
 #' @param start temperature, in celsius, of the start of the transition curve.
 #'

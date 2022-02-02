@@ -1,8 +1,8 @@
 #' @title Melting Temperature Graph of All CD Spectras
 #'
-#' @description This function returns overlaysall the CD  in one graph.
+#' @description This function returns overlays all the CD  in one graph.
 #'
-#' @param data an object of class 'cd'
+#' @param data object outputted from \link{infoCD} function.
 #'
 #' @param ... passing arguments to \code{plot} function.
 #'

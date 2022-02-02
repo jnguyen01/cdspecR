@@ -16,6 +16,9 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/reference/analyzeCDMelt.html</loc>
+  </url>
+  <url>
     <loc>/reference/importCD.html</loc>
   </url>
   <url>
@@ -32,6 +35,9 @@
   </url>
   <url>
     <loc>/reference/plotCDVantHoff.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotCDVH.html</loc>
   </url>
   <url>
     <loc>/reference/thermodynamicsCD.html</loc>

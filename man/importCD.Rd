@@ -2,20 +2,20 @@
 % Please edit documentation in R/importCD.R
 \name{importCD}
 \alias{importCD}
-\title{Import Circular Dichroism Files From Jasco J-810}
+\title{Import Files From Jasco J-810 Circular Dichroism (CD) Spectropolarimeter}
 \usage{
 importCD(files)
 }
 \arguments{
-\item{files}{path to where csv files for the CD data are located. If missing, the
-user is prompted to select files interactively.}
+\item{files}{path to where csv files  are located. If missing, the
+user is prompted to select a folder interactively.}
 }
 \value{
 a list containing a data frame and an atomic vector
 }
 \description{
-This is a user-friendly, importing function that takes CSV files exported from
-the Jasco J-810 Circular Dichroism Spectropolarimeter.
+This is an importing function that takes the CSV files from the Jasco J-810
+machine and organizes all the CD Melt spectra data at each temperature into a large data frame.
 }
 \examples{
 
@@ -23,6 +23,7 @@ the Jasco J-810 Circular Dichroism Spectropolarimeter.
 
 #selecting file interactively
 protein <- importCD()
+
 
 }
 

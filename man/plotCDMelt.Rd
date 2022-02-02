@@ -2,12 +2,12 @@
 % Please edit documentation in R/plotCDMelt.R
 \name{plotCDMelt}
 \alias{plotCDMelt}
-\title{Melting Data Plot}
+\title{Thermal Melting Plot of Ellipticities}
 \usage{
 plotCDMelt(data, wavelength, col = "red", pch = 16, ...)
 }
 \arguments{
-\item{data}{a class object 'cd'}
+\item{data}{the object outputted from \link{importCD} function.}
 
 \item{wavelength}{specific wavelength of interest for plotting ellipticities as a function
 of temperature.}
@@ -19,14 +19,14 @@ of temperature.}
 \item{...}{passing arguments to \link{plot} function.}
 }
 \description{
-a plot of the ellipticity values at a given wavelength over
+a plot of the ellipticity values (at user-specified wavelength), as a function of
 temperature.
 }
 \examples{
 \dontrun {
 
-protein <- importCD() \%>\% plotCDMelt(wavelength=220)
-
+protein <- importCD()
+protein220nm <- plotCDMelt(protein, wavelength=220)
 
 }
 
