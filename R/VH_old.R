@@ -22,6 +22,7 @@
 #' @export
 #'
 #' @import dplyr
+#' @import greekLetters
 #'
 #' @examples
 #' \dontrun {
@@ -37,9 +38,11 @@
 #' }
 #'
 
-plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.temp=NULL, main="Van't Hoff Equation", legend=FALSE, ...) {
+plotCDVH <- function(data, folded_temp, unfolded_temp, digits=3,
+                           remove.temp=NULL, main="van't Hoff Plot", legend=TRUE, ...) {
 
   suppressMessages(require(dplyr))
+  suppressMessages(require(greekLetters))
 
   if(!inherits(data, "vh")) stop("data must  be class 'vh'")
 
@@ -122,19 +125,28 @@ plotCDVantHoff <- function(data, folded_temp, unfolded_temp, digits=3, remove.te
   #adding thermodynamic parameters onto plot
 
   if(legend==TRUE) {
-  legend("topright", legend=c(paste("y = ", round(slope, digits) , "x +", round(intercept, digits)),
+  legend("topright", legend=c(paste("ln(Keq)= ", round(slope, digits) , "(1/T) +", round(intercept, digits)),
                                   as.expression(bquote(R^2 ~ ": " ~ .(rsquared))),
                                   as.expression(bquote(Delta ~ "H :" ~ .(enthalpy/1000) ~"kJ" ~ mol^-1)),
                                   as.expression(bquote(Delta ~ "S :" ~.(entropy) ~ "J" ~ K^-1 ~ mol^-1)),
                                   as.expression(bquote(T[m] ~ ": "~ .(Tm)~"°C")),
-                                  as.expression(bquote(Delta ~ Delta ~ G[unfolded-folded] ~ ": " ~ .(ddG) ~ "kJ " ~ mol^-1))), bty="n", cex=0.75)
+                                  as.expression(bquote(Delta ~ Delta ~ G[unfolded-folded] ~ ": " ~ .(ddG) ~ "kJ " ~ mol^-1))),
+         bty="n", cex=0.75)
   }
 
   thermo <- vector()
 
   thermo <- c(thermo, enthalpy/1000, entropy, dGfolded/1000, dGunfolded/1000, ddG, Tm)
 
-  return(thermo)
+  names(thermo) <- c(paste(greek$Delta, "H (kJ/mol)"),
+                     paste(greek$Delta, "S (J/mol K)") ,
+                     paste(greek$Delta, "G_folded (kJ/mol)"),
+                     paste(greek$Delta, "G_unfolded (kJ/mol)"),
+                     paste(greek$Delta, greek$Delta,  "G (kJ/mol)"),
+                     "Melting Temp. (°C)")
+  lst <- list(thermo, df)
+
+  return(lst)
 
 }
 

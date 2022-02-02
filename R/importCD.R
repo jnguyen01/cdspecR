@@ -1,11 +1,10 @@
-#' @title Import Circular Dichroism Files From Jasco J-810
+#' @title Import Files From Jasco J-810 Circular Dichroism (CD) Spectropolarimeter
 #'
-#' @description
-#' This is a user-friendly, importing function that takes CSV files exported from
-#' the Jasco J-810 Circular Dichroism Spectropolarimeter.
+#' @description This is an importing function that takes the CSV files from the Jasco J-810
+#' machine and organizes all the CD Melt spectra data at each temperature into a large data frame.
 #'
-#' @param files path to where csv files for the CD data are located. If missing, the
-#' user is prompted to select files interactively.
+#' @param files path to where csv files  are located. If missing, the
+#' user is prompted to select a folder interactively.
 #'
 #' @export
 #'
@@ -20,14 +19,17 @@
 #' #selecting file interactively
 #' protein <- importCD()
 #'
+#'
 #' }
 #'
 #'
 
  importCD <- function(files) {
 
-  if(missing(files)) files <- choose.files()
-
+  if(missing(files)){
+    dir <- choose.dir()
+    files <- list.files(dir, full.names=TRUE)
+ }
   info <- infoCD(file=files[1])
 
   pattern <- seq(info[2], info[1], by=info[3])

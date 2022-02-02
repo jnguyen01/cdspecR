@@ -1,6 +1,6 @@
-#' @title Overlay of All CD Spectra
+#' @title Melting Temperature Graph of All CD Spectras
 #'
-#' @description overlay all circular dichroism spectras
+#' @description This function returns overlaysall the CD  in one graph.
 #'
 #' @param data an object of class 'cd'
 #'
@@ -8,7 +8,7 @@
 #'
 #' @export
 #'
-#' @return a plot
+#' @return a color-coded plot of each CD spectras on one graph.
 #'
 #' @importFrom cultevo temperature.colors
 #'
@@ -28,8 +28,6 @@
 #'
 
 plotCDSpectra <- function(data, title=NULL, ...) {
-
-
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
@@ -57,9 +55,7 @@ plotCDSpectra <- function(data, title=NULL, ...) {
 
   }
 
-  #legend("topleft", legend=paste(seq_temp, "°C"), fill=col, bty="n", cex=0.5, ncol=6)
-
-
+  legend("topright", legend=paste(seq_temp, "°C"), col=col, bty="n", lty=1, lwd=1.2, cex=0.6, ncol=6)
 
 
   }

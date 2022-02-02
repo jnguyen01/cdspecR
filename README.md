@@ -40,8 +40,5 @@ protein_210 <- plotCDMelt(protein, wavelength=210)
 thermodynamics <- plotCDVantHoff(protein_210, folded_temp=10, unfolded_temp=95) 
 
 
-
-
-
 ```
 

@@ -1,9 +1,9 @@
-#' @title Melting Data Plot
+#' @title Thermal Melting Plot of Ellipticities
 #'
-#' @description a plot of the ellipticity values at a given wavelength over
+#' @description a plot of the ellipticity values (at user-specified wavelength), as a function of
 #' temperature.
 #'
-#' @param data a class object 'cd'
+#' @param data the object outputted from importCD().
 #'
 #' @param wavelength specific wavelength of interest for plotting ellipticities as a function
 #' of temperature.
@@ -19,8 +19,8 @@
 #' @examples
 #' \dontrun {
 #'
-#' protein <- importCD() %>% plotCDMelt(wavelength=220)
-#'
+#' protein <- importCD()
+#' protein220nm <- plotCDMelt(protein, wavelength=220)
 #'
 #' }
 #'
@@ -28,7 +28,7 @@
 
 plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
 
-  if(!inherits(data, "cd")) stop("data must  be class 'cd'")
+  #if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
   if(missing(wavelength)) {
   stop("please put in specific wavelength")
@@ -53,7 +53,7 @@ plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
   #cat("Q: At what temperatures do you assume fraction fully-folded and fully-unfolded? \n")
   final <- list(ellip, temp, info)
   names(final) <- c("ellips", "temp_celsius", "info")
-  class(final) <- c("vh", "list")
+  #class(final) <- c("cd", "list")
   return(final)
 
 }
