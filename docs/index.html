@@ -83,20 +83,20 @@
 <code class="sourceCode R"><span class="co">#Load The Package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">cdspecR</span><span class="op">)</span>
 
-<span class="co"># Step 1 - Use importCD </span>
+<span class="co"># Step 1 - Import and select folder containing desired CSV files</span>
 <span class="va">protein</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/importCD.html">importCD</a></span><span class="op">(</span><span class="op">)</span> 
 
-<span class="co"># [Optional] Use plotCDSpectra to see all CD Spectra on one graph. </span>
-<span class="fu"><a href="reference/plotCDSpectra.html">plotCDSpectra</a></span><span class="op">(</span><span class="va">protein</span><span class="op">)</span> 
+<span class="co"># [Optional] Overlay all melting graphs </span>
+<span class="fu">spectra</span><span class="op">(</span><span class="va">protein</span><span class="op">)</span> 
 
-<span class="co"># Step 2 - Use plotCDMelt </span>
-<span class="va">melt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plotCDMelt.html">plotCDMelt</a></span><span class="op">(</span><span class="va">protein</span>, wavelength<span class="op">=</span><span class="fl">220</span><span class="op">)</span>
+<span class="co"># Step 2 - Generate a plot of ellipiticity as a function of temperature</span>
+<span class="va">melt</span> <span class="op">&lt;-</span> <span class="fu">plotMelt</span><span class="op">(</span><span class="va">protein</span>, wavelength<span class="op">=</span><span class="fl">220</span><span class="op">)</span>
 
-<span class="co"># Step 3 - Use analyzeCDMelt </span>
-<span class="va">analyze</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/analyzeCDMelt.html">analyzeCDMelt</a></span><span class="op">(</span><span class="va">melt</span><span class="op">)</span>
+<span class="co"># Step 3 -  Calculate fraction unfolded and plot it as a function of temperature</span>
+<span class="va">analyze</span> <span class="op">&lt;-</span> <span class="fu">analyze</span><span class="op">(</span><span class="va">melt</span><span class="op">)</span>
 
-<span class="co"># Step 4 - use plotCDVH</span>
-<span class="va">vh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plotCDVH.html">plotCDVH</a></span><span class="op">(</span><span class="va">analyze</span><span class="op">)</span>
+<span class="co"># Step 4 - Use van't Hoff equation to approximate thermodynamics parameters of the system</span>
+<span class="va">vh</span> <span class="op">&lt;-</span> <span class="fu">thermodynamics</span><span class="op">(</span><span class="va">analyze</span><span class="op">)</span>
 
 </code></pre></div>
 </div>

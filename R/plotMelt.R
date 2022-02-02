@@ -24,7 +24,7 @@
 #'
 #
 
-plotCDMelt <- function(data, wavelength, col="red", pch=16, ...) {
+plotMelt <- function(data, wavelength, col="red", pch=16, ...) {
 
   #if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 

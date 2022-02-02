@@ -32,7 +32,7 @@
 #'
 #'
 
-plotCDVH <- function(data, start, end, digits=3, legend=TRUE, ...) {
+thermodynamics<- function(data, start, end, digits=3, legend=TRUE, ...) {
 
   suppressMessages(require(dplyr))
   suppressMessages(require(greekLetters))
@@ -100,7 +100,7 @@ plotCDVH <- function(data, start, end, digits=3, legend=TRUE, ...) {
                      paste(greek$Delta, greek$Delta,  "G (kJ/mol)"),
                      "Melting Temp. (°C)")
 
-  if(legend==FALSE) next
+  if(legend==FALSE) skip
 
   lst <- list(thermo, df)
 

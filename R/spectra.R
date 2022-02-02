@@ -23,7 +23,7 @@
 #' plotCDSpectra(protein)
 #' }
 
-plotCDSpectra <- function(data, legend=TRUE, ...) {
+spectra <- function(data, legend=TRUE, ...) {
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
