@@ -20,6 +20,8 @@
 #'
 #' @import dplyr
 #' @import greekLetters
+#' @importFrom graphics abline axis lines text
+#' @importFrom stats coefficients lm
 #'
 #' @examples
 #' \dontrun{
@@ -30,7 +32,7 @@
 #'
 #'
 
-plotCDVH <- function(data, start, end, digits=3, main="van't Hoff Plot", legend=TRUE, ...) {
+plotCDVH <- function(data, start, end, digits=3, legend=TRUE, ...) {
 
   suppressMessages(require(dplyr))
   suppressMessages(require(greekLetters))

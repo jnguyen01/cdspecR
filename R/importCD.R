@@ -11,6 +11,7 @@
 #' @return a list containing a data frame and an atomic vector
 #'
 #' @importFrom readr read_csv
+#' @importFrom utils choose.dir
 #'
 #' @examples
 #'

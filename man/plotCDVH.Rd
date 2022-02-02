@@ -23,6 +23,9 @@ plotCDVH(
 
 \item{digits}{how many digits shown for thermodynamic parameters.}
 
+\item{legend}{shows the thermodynamic parameters using the Van't Hoff. Set legend=FALSE to
+hide the legend.}
+
 \item{...}{passing arguments to \link{plot} function.}
 }
 \description{
@@ -30,12 +33,11 @@ This function requires the user to specify the start and end temperature (in Cel
 range for the transition curve, where a plot of natural log of equilibrium constants versus 1/Temperature (in Kelvin).
 }
 \examples{
-\dontrun {
-
+\dontrun{
 protein <- importCD() \%>\%
-plotCDMelt(wavelength=210) \%>\%
+plotCDMelt(pwavelength=210) \%>\%
 analyzeCDMelt()
-
 }
+
 
 }

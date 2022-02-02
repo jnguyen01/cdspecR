@@ -4,10 +4,12 @@
 \alias{plotCDSpectra}
 \title{Melting Temperature Graph of All CD Spectras}
 \usage{
-plotCDSpectra(data, title = NULL, ...)
+plotCDSpectra(data, legend = TRUE, ...)
 }
 \arguments{
 \item{data}{object outputted from \link{infoCD} function.}
+
+\item{legend}{shows the legend of the melting temperature. Default is TRUE.}
 
 \item{...}{passing arguments to \code{plot} function.}
 }
@@ -19,16 +21,10 @@ This function returns overlays all the CD  in one graph.
 }
 \examples{
 
-\dontrun {
-
+\dontrun{
 #import data
 protein <- importCD()
-
 #create spectras
 plotCDSpectra(protein)
-
 }
-
-
-
 }

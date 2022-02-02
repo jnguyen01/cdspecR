@@ -7,7 +7,7 @@
 plotCDMelt(data, wavelength, col = "red", pch = 16, ...)
 }
 \arguments{
-\item{data}{the object outputted from \link{importCD} function.}
+\item{data}{the data is outputted from \link{importCD} function.}
 
 \item{wavelength}{specific wavelength of interest for plotting ellipticities as a function
 of temperature.}
@@ -23,11 +23,9 @@ a plot of the ellipticity values (at user-specified wavelength), as a function o
 temperature.
 }
 \examples{
-\dontrun {
-
+\dontrun{
 protein <- importCD()
 protein220nm <- plotCDMelt(protein, wavelength=220)
-
 }
 
 }

@@ -52,7 +52,7 @@ temperature.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
-<dd><p>the object outputted from <a href="importCD.html">importCD</a> function.</p></dd>
+<dd><p>the data is outputted from <a href="importCD.html">importCD</a> function.</p></dd>
 <dt>wavelength</dt>
 <dd><p>specific wavelength of interest for plotting ellipticities as a function
 of temperature.</p></dd>
@@ -66,7 +66,12 @@ of temperature.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">protein</span> <span class="op">&lt;-</span> <span class="fu"><a href="importCD.html">importCD</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">protein220nm</span> <span class="op">&lt;-</span> <span class="fu">plotCDMelt</span><span class="op">(</span><span class="va">protein</span>, wavelength<span class="op">=</span><span class="fl">220</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"></span>
+</code></pre></div>
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

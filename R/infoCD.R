@@ -9,6 +9,8 @@
 #'
 #' @return an atomic vector
 #'
+#' @export
+#'
 #' @importFrom readr read_lines
 #'
 #' @examples
