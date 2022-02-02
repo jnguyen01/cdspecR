@@ -25,7 +25,6 @@ remotes::install_github("jnguyen01/cdspecR")
 ## How To Use These Functions:
 
 ``` r
-
 #Load The Package
 library(cdspecR)
 
