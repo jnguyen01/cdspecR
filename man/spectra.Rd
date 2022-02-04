@@ -4,12 +4,12 @@
 \alias{spectra}
 \title{Melting Temperature Graph of All CD Spectras}
 \usage{
-spectra(data, legend = TRUE, ...)
+spectra(data, show.legend = TRUE, ...)
 }
 \arguments{
 \item{data}{object outputted from \link{infoCD} function.}
 
-\item{legend}{shows the legend of the melting temperature. Default is TRUE.}
+\item{show.legend}{shows the legend of the melting temperature. Set show.legend=FALSE to hide.}
 
 \item{...}{passing arguments to \code{plot} function.}
 }

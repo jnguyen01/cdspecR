@@ -4,7 +4,7 @@
 #' equilibrium constants from the native state to the denatured state. Afterwards, a plot of the fraction unfolded as
 #' a function of temperature is given.
 #'
-#' @param data list outputted from \link{plotCDMelt} function.
+#' @param data list outputted from \link{plotMelt} function.
 #'
 #' @param folded_temp temperature, in celsius, where the biomolecule is assumed fully-folded.
 #'

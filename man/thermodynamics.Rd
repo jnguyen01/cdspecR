@@ -4,10 +4,10 @@
 \alias{thermodynamics}
 \title{Calculating Thermodynamic Parameters using van't Hoff (VH) Equation}
 \usage{
-thermodynamics(data, start, end, digits = 3, legend = TRUE, ...)
+thermodynamics(data, start, end, digits = 3, show.legend = TRUE, ...)
 }
 \arguments{
-\item{data}{an object of class 'vh'; outputted from \link{analyzeCDMelt} function.}
+\item{data}{an object of class 'vh'; outputted from \link{analyzeMelt} function.}
 
 \item{start}{temperature, in celsius, of the start of the transition curve.}
 
@@ -15,7 +15,7 @@ thermodynamics(data, start, end, digits = 3, legend = TRUE, ...)
 
 \item{digits}{how many digits shown for thermodynamic parameters.}
 
-\item{legend}{shows the thermodynamic parameters using the Van't Hoff. Set legend=FALSE to
+\item{show.legend}{shows the thermodynamic parameters using the Van't Hoff. Set show.legend=FALSE to
 hide the legend.}
 
 \item{...}{passing arguments to \link{plot} function.}

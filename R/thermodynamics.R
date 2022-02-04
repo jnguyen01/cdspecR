@@ -3,7 +3,7 @@
 #' @description This function requires the user to specify the start and end temperature (in Celsius)
 #' range for the transition curve, where a plot of natural log of equilibrium constants versus 1/Temperature (in Kelvin).
 #
-#' @param data an object of class 'vh'; outputted from \link{analyzeCDMelt} function.
+#' @param data an object of class 'vh'; outputted from \link{analyzeMelt} function.
 #'
 #' @param start temperature, in celsius, of the start of the transition curve.
 #'
@@ -11,7 +11,7 @@
 #'
 #' @param digits how many digits shown for thermodynamic parameters.
 #'
-#' @param legend shows the thermodynamic parameters using the Van't Hoff. Set legend=FALSE to
+#' @param show.legend shows the thermodynamic parameters using the Van't Hoff. Set show.legend=FALSE to
 #' hide the legend.
 #'
 #' @param ... passing arguments to \link{plot} function.
@@ -20,7 +20,7 @@
 #'
 #' @import dplyr
 #' @import greekLetters
-#' @importFrom graphics abline axis lines text
+#' @importFrom graphics abline axis lines text legend
 #' @importFrom stats coefficients lm
 #'
 #' @examples
@@ -32,7 +32,7 @@
 #'
 #'
 
-thermodynamics<- function(data, start, end, digits=3, legend=TRUE, ...) {
+thermodynamics<- function(data, start, end, digits=3, show.legend=TRUE, ...) {
 
   suppressMessages(require(dplyr))
   suppressMessages(require(greekLetters))
@@ -70,7 +70,7 @@ thermodynamics<- function(data, start, end, digits=3, legend=TRUE, ...) {
 
   #Van't Hoff Plot
   plot(df$`1/temp_kelvin`, df$lnKeq,
-       xlab= "1/T (1/K)", ylab="ln(Keq)", main=main,
+       xlab= "1/T (1/K)", ylab="ln(Keq)",
        col="blue", pch=16, ...)
   #adding line of best fit
   abline(fit, col="red", lwd=1.1)
@@ -79,7 +79,7 @@ thermodynamics<- function(data, start, end, digits=3, legend=TRUE, ...) {
   #adding thermodynamic parameters onto plot
 
   #plot legend if true
-  if(legend==TRUE) {
+  if(show.legend!=FALSE) {
     legend("topright", legend=c(paste("ln(Keq)= ", round(slope, digits) , "(1/T) +", round(intercept, digits)),
                                 as.expression(bquote(R^2 ~ ": " ~ .(rsquared))),
                                 as.expression(bquote(Delta ~ "H :" ~ .(enthalpy/1000) ~"kJ" ~ mol^-1)),
@@ -100,7 +100,7 @@ thermodynamics<- function(data, start, end, digits=3, legend=TRUE, ...) {
                      paste(greek$Delta, greek$Delta,  "G (kJ/mol)"),
                      "Melting Temp. (°C)")
 
-  if(legend==FALSE) skip
+
 
   lst <- list(thermo, df)
 

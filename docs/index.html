@@ -87,16 +87,16 @@
 <span class="va">protein</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/importCD.html">importCD</a></span><span class="op">(</span><span class="op">)</span> 
 
 <span class="co"># [Optional] Overlay all melting graphs </span>
-<span class="fu">spectra</span><span class="op">(</span><span class="va">protein</span><span class="op">)</span> 
+<span class="fu"><a href="reference/spectra.html">spectra</a></span><span class="op">(</span><span class="va">protein</span><span class="op">)</span> 
 
 <span class="co"># Step 2 - Generate a plot of ellipiticity as a function of temperature</span>
-<span class="va">melt</span> <span class="op">&lt;-</span> <span class="fu">plotMelt</span><span class="op">(</span><span class="va">protein</span>, wavelength<span class="op">=</span><span class="fl">220</span><span class="op">)</span>
+<span class="va">melt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plotMelt.html">plotMelt</a></span><span class="op">(</span><span class="va">protein</span>, wavelength<span class="op">=</span><span class="fl">220</span><span class="op">)</span>
 
 <span class="co"># Step 3 -  Calculate fraction unfolded and plot it as a function of temperature</span>
 <span class="va">analyze</span> <span class="op">&lt;-</span> <span class="fu">analyze</span><span class="op">(</span><span class="va">melt</span><span class="op">)</span>
 
 <span class="co"># Step 4 - Use van't Hoff equation to approximate thermodynamics parameters of the system</span>
-<span class="va">vh</span> <span class="op">&lt;-</span> <span class="fu">thermodynamics</span><span class="op">(</span><span class="va">analyze</span><span class="op">)</span>
+<span class="va">vh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/thermodynamics.html">thermodynamics</a></span><span class="op">(</span><span class="va">analyze</span><span class="op">)</span>
 
 </code></pre></div>
 </div>

@@ -14,7 +14,6 @@ biochemistry of the system
 ## How To Install: 
 
 ``` r
-
 #Copy and Paste The Following Code: 
 if(!require(remotes)){
   install.packages("remotes")
@@ -42,7 +41,4 @@ analyze <- analyze(melt)
 
 # Step 4 - Use van't Hoff equation to approximate thermodynamics parameters of the system
 vh <- thermodynamics(analyze)
-
-
-
 ```

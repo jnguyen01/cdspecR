@@ -19,6 +19,9 @@
     <loc>/reference/analyzeCDMelt.html</loc>
   </url>
   <url>
+    <loc>/reference/analyzeMelt.html</loc>
+  </url>
+  <url>
     <loc>/reference/importCD.html</loc>
   </url>
   <url>
@@ -38,6 +41,15 @@
   </url>
   <url>
     <loc>/reference/plotCDVH.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotMelt.html</loc>
+  </url>
+  <url>
+    <loc>/reference/spectra.html</loc>
+  </url>
+  <url>
+    <loc>/reference/thermodynamics.html</loc>
   </url>
   <url>
     <loc>/reference/thermodynamicsCD.html</loc>

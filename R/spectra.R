@@ -4,7 +4,7 @@
 #'
 #' @param data object outputted from \link{infoCD} function.
 #'
-#' @param legend shows the legend of the melting temperature. Default is TRUE.
+#' @param show.legend shows the legend of the melting temperature. Set show.legend=FALSE to hide.
 #'
 #' @param ... passing arguments to \code{plot} function.
 #'
@@ -23,7 +23,7 @@
 #' plotCDSpectra(protein)
 #' }
 
-spectra <- function(data, legend=TRUE, ...) {
+spectra <- function(data, show.legend=TRUE, ...) {
 
   if(!inherits(data, "cd")) stop("data must  be class 'cd'")
 
@@ -51,9 +51,8 @@ spectra <- function(data, legend=TRUE, ...) {
 
   }
 
-  if(legend==TRUE){
+  if(show.legend!=FALSE){
   legend("topright", legend=paste(seq_temp, "°C"), col=col, bty="n", lty=1, lwd=1.2, cex=0.6, ncol=6)
   }
-  if(legend==FALSE) next
 
   }
