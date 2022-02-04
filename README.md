@@ -37,7 +37,7 @@ spectra(protein)
 melt <- plotMelt(protein, wavelength=220)
 
 # Step 3 -  Calculate fraction unfolded and plot it as a function of temperature
-analyze <- analyze(melt)
+analyze <- analyzeMelt(melt)
 
 # Step 4 - Use van't Hoff equation to approximate thermodynamics parameters of the system
 vh <- thermodynamics(analyze)
