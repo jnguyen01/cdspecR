@@ -16,8 +16,6 @@
 #'
 #' @export
 #'
-#' @importFrom stats loess predict
-#'
 #' @examples
 #' \dontrun{
 #'
@@ -54,7 +52,7 @@ unfolded_temp <- as.numeric(substitute(unfolded_temp))
 
 folded_unfolded_range <- seq(folded_temp, unfolded_temp, by=data$info[6])
 
-df <- data.frame(temp_celsius=data$temp_celsius, ellips=data$ellips, check.names=FALSE) %>%
+df <- data.frame(temp_celsius=data[[2]], ellips=data[[1]], check.names=FALSE) %>%
   filter(temp_celsius %in% folded_unfolded_range) %>%
   mutate((1/(temp_celsius+273)), .before=2)
 
@@ -76,13 +74,13 @@ df <- df %>% mutate(FractionUnfolded = (ellips - folded_elip) / (delta)) %>%
 
 options(warn = defaultW)
 
-lo <- stats::loess(df$FractionUnfolded ~ df$temp_celsius)
+#lo <- stats::loess(df$FractionUnfolded ~ df$temp_celsius)
 
 plot(df$temp_celsius, df$FractionUnfolded,
      xlab="Temperature (°C)",
      ylab="Fractional Unfolded", pch=pch, ...)
 
-lines(stats::predict(lo), col="red", lwd=2)
+#lines(stats::predict(lo), col="red", lwd=2)
 
 lst <- list(df, data$info)
 
